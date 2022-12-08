@@ -1,0 +1,69 @@
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+                <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                    <div class="card-body p-4 p-md-5">
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Savings Account Form</h3>
+                        <form [formGroup]="SavingsForm" (ngSubmit)="submit()">
+
+                            <div class="row">
+
+
+                                <div class="col-md-6 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="firstName">First name</label>
+                                        <input type="text" formControlName="firstName" id="firstName" class="form-control form-control-lg" />
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="lastName">Last name</label>
+                                        <input type="text" formControlName="lastName" id="lastName" class="form-control form-control-lg" />
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="securityQuestion">securityQuestion</label>
+                                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg" formControlName="securityQuestion" style="height:35px;" required id="SecurityQuestion">
+                                            <option selected>Select...</option>
+                                            <option>what was your first pet's name?</option>
+                                            <option>what highschool did you go to?</option>
+                                            <option>what is your favorite food?</option>
+                                            <option>what is your highscore in pinball?</option>
+                                            <option>where were you on the 17th of december 1989?</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 mb-4">
+
+                                    <div class="form-outline">
+                                        <label class="form-label" for="securityAnswer">answer</label>
+                                        <input type="text" formControlName="securityAnswer" id="securityAnswer" class="form-control form-control-lg" />
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="mt-4 pt-2">
+                                <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

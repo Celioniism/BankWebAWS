@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <app-head></app-head>
+
+</head>
+
+
+
+
+   
+
+
+
+
+<body>
+    
+    <div class="RegisterStaff">
+        <form [formGroup]="registerForm">
+          <h1 class="title">Register</h1>
+    
+          <div class="form-group">
+            <label for="fullName" >fullName</label>
+            <input type="text" class="form-control"  style="background-color:rgb(140, 212, 154)" formControlName="fullName" [(ngModel)]="staff.fullName" >
+            <div *ngIf="submitted && f.fullName.errors" class="alert alert-danger" role="alert">
+              fullName is required
+          </div>
+          </div>
+    
+          <div class="form-group">
+            <label for="userName" >userName</label>
+            <input type="text" class="form-control"  style="background-color:rgb(140,212,154)"formControlName="userName" [(ngModel)]="staff.userName">
+            <div *ngIf="submitted && f.userName.errors.required">
+              userName is required
+          </div>
+          </div>
+    
+          <div class="form-group">
+            <label for="password" >password</label>
+            <input type="text" class="form-control"  style="background-color:rgb(140,212,154)"formControlName="password" [(ngModel)]="staff.password">
+            <div *ngIf="submitted && f.password.errors">
+              password is required
+          </div>
+          </div>
+    
+          
+          <div style="width:50%;padding:0;margin:0;float:left;">
+          <button type="submit" class="btn btn-primary" (click)=register()>Submit</button>
+          </div>
+          <div style="width:50%;padding:0;margin:0;float:right;">
+          <button type="reset" class="btn btn-secondary"    (click)=reset()>Clear</button>
+        </div>
+        </form>
+      </div>
+                    
+</body>
+
+</html>

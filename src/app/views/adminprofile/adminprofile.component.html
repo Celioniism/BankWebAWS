@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <app-head></app-head>
+
+</head>
+
+<style>
+    .center {
+        text-align: center;
+    }
+
+    .ftable tr:not(.fble_htr) {
+    counter-increment: rowNumber;
+}
+
+.ftable tr:not(.fble_htr) td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+
+</style>
+
+<body>
+    <header th:admin="adminprofile">
+        <div th:insert="fragments/minimalheader :: profileheader"></div>
+        <div class="container-lg g-0">
+            <img class="w-100 pfpImageBG" style="min-height: 300px; height: auto; max-height: 300px; object-fit: cover; object-position: 50% 60%; filter: blur(1px);">
+            <div class="mx-auto pt-5 pb-3">
+                <div class="d-flex justify-content-center" style="position: relative">
+                    <div style="position: absolute; transform: translateY(-100%);">
+                        <img style="width: 150px; height: 150px;" class="pfpImage figure-img rounded-circle border border-5" />
+                        <div style="position: absolute; left: 70%; top: 70%;">
+                            <div class="rounded-circle border border-5" style="border-color: black; width: 35px; height: 35px; background-color: #91ff41; "></div>
+                        </div>
+                    </div>
+                    <div class="py-2">
+                        <h2 class="text-center mb-0"></h2>
+                        <h6 class="text-center text-muted"></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-lg" style="position: relative;">
+            <div class="row g-3">
+                <div class="col-sm-12 col-md-6">
+                    <div class="shadow container" style="background-color: #c7c7c7; ">
+                        <div class="staff" style="background-color: #c7c7c7; border-width:0px;">
+                            <div class="staff-body">
+                                
+                                <h5>Staff Information</h5>
+                                
+                                <table class="table table-dark table-striped ">
+                                    <thead>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Staff ID</th>
+                                        <th scope="col">Staff Name</th>
+                                        <th scope="col">User Name</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let staff of GeneralStaff; let i = index">
+                                        <th scope="row">{{i+1}}</th>
+                                        <td>{{staff.staffId}}</td>
+                                        <td>{{staff.fullName}}</td>
+                                        <td>{{staff.userName}}</td>
+                                        </tr>
+                                    </tbody>
+
+
+                                </table>
+                                
+                                <p style="text-align:right">
+                                <a href="registerstaff"  style="background-color: #c7c7c7; margin:right">Register</a>
+                            </p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="shadow" style="background-color: #c7c7c7;">
+                        <div class="card" style="background-color: #c7c7c7; border-width:0px;">
+                            <div class="card-body">
+                                <h5>settings</h5>
+                                <p> Edit your details</p>
+                                <a href="" class="btn-custom" style="background-color: #c7c7c7;">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 container center" style="padding: 40px">
+                <div class="centerparent" style="padding: 80px">
+                    <a style="margin: 0 auto; text-align: center; vertical-align: middle; font-weight: 500; padding-bottom: 12px" href="mainpage" class="btn-custom text-shadowbtn">Logout</a>
+
+                    <div class="media-collection-sm carousel">
+
+                        <div class="carousel-cell list-item z-index-controller"></div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+    </header>
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src=".../assets/js/forms.js"></script>
+</head>
+
+<body>
+
+    <div class="wrapper rounded">
+        <nav class="navbar navbar-expand-lg navbar-dark dark d-lg-flex align-items-lg-start"> <a class="navbar-brand" href="Transactions">Transactions <p class="text-muted pl-1 cardtxt-sm" >Welcome to your transactions</p> </a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-lg-auto">
+                </ul>
+            </div>
+        </nav>
+        <div class="row mt-2 pt-2">
+            <div class="col-md-6" id="income">
+                <div class="d-flex justify-content-start align-items-center">
+                    <p class="fa btn-profile"></p>
+                    <p class="text mx-3 cardtxt-sm">Total Balance:</p>
+                    <p class="text-white ml-4 money cardtxt-sm">{{balance | currency:'USD'}}</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex justify-content-md-end align-items-center">
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <ul class="nav nav-tabs w-75">
+                <li class="nav-item"> <a class="nav-link active cardtxt-sm">History</a> </li>
+            </ul>
+        </div>
+        <div class="table-responsive mt-3">
+            <table class="table table-dark table-borderless sortable">
+                <thead>
+                    <tr>
+                        <th class="cardtxt" scope="col">Activity</th>
+                        <th class="cardtxt" scope="col">Mode</th>
+                        <th class="sort-column cardtxt" data-sort-order="null" scope="col">Date</th>
+                        <th class="cardtxt" scope="col">memo</th>
+                        <th scope="col" class="text-right cardtxt">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="item" *ngFor="let transaction of Transactions; let i = index">
+                        <td scope="row"> <span class="mr-1 cardtxt-sm">{{transaction.transactionType | titlecase }}</span></td>
+                        <td class=" bgglow springcardsm cardtxt-sm"><span class="fa"></span></td>
+                        <td class="text-muted cardtxt-sm">{{transaction.date_and_time}}</td>
+                        <td class="text-muted cardtxt-sm">{{transaction.reference}} </td>
+
+                        <td class="d-flex justify-content-end align-items-center cardtxt-sm">{{transaction.amount | currency:'USD' }}<span [ngClass]="(transaction.transactionType=='WITHDRAW') ? 'redCirc' : 'greenCirc'" class=" fa fa-long-arrow-up mr-1">
+                                <a class="w-or-d " [ngClass]="(transaction.transactionType=='WITHDRAW') ? 'downarrow' : 'uparrow'"></a></span> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-between align-items-center results"> <span class="pl-md-3">make<b class="text-white"> new </b> trasactions</span>
+            <div class="pt-3" id="p2">
+                <a class="btn-custom-2" (click)="Deposits()">Deposit</a>
+                <a class="btn-custom-2" (click)="Withdraws()">Withdaw</a>
+                <a class="btn-custom-2" (click)="Transfers()">Transfer</a>
+            </div>
+        </div>
+
+        <!-- deposits -->
+        <div *ngIf="Deposit" class="row container-fluid" id="Deposhow">
+            <div class="row g-3 mr-3">
+                <form [formGroup]="DepositForm" (ngSubmit)="submitDeposit()">
+                    <div class="form-group row">
+                        <label for="amount" style="color:white;" class="col-sm-3 col-form-label col-form-label-lg">Amount to deposit</label>
+                        <div class="col-sm-5">
+                            <input type="number" formControlName="amount" class="form-control form-control-lg mb-3" id="amount" placeholder="0,000.00">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="reference" style="color:white;" class="col-sm-3 col-form-label col-form-label-lg">memo</label>
+                        <div class="col-sm-5">
+                            <input type="text" formControlName="reference" class="form-control form-control-lg mb-3" id="reference" placeholder="---">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="cardnumb" style="color:white;" class="col-sm-3 col-form-label col-form-label-lg">Card to deposit to:</label>
+                        <div class="col-sm-5">
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg" formControlName="cardNumber" style="height:35px;" required id="cardnumb">
+                                <option selected>Select...</option>
+                                <option *ngFor="let cards of Cards">{{cards.cardNumber}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-10">
+                        <button type="submit" style="transform: translateX(700%);" class="btn btn-success">Deposit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- withdrawals -->
+        <div *ngIf="Withdraw" class="row container-fluid" id="Withshow">
+
+            <div class="row g-3 mr-3">
+                <form [formGroup]="WithdrawForm" (ngSubmit)="submitWithdrawal()">
+                    <div class="form-group row">
+                        <label for="amount" style="color:white;" class="col-sm-3 col-form-label col-form-label-lg">Amount to withdraw</label>
+                        <div class="col-sm-5">
+                            <input type="text" formControlName="amount" class="form-control form-control-lg mb-3" id="amount" placeholder="0,000.00">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="cardnumb" style="color:white;" class="col-sm-3 col-form-label col-form-label-lg">Card to withdraw from:</label>
+                        <div class="col-sm-5">
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg" formControlName="cardNumber" style="height:35px;" required id="cardnumb">
+                                <option selected>Select...</option>
+                                <option *ngFor="let cards of Cards">{{cards.cardNumber}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-10">
+                        <button type="submit" style="transform: translateX(550%);" class="btn btn-success">Withdraw</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <!-- transfers -->
+        <div *ngIf="Transfer" class="row container-fluid" id="Transfshow">
+            <div class="row g-3 mr-3">
+                <form [formGroup]="TransferForm" (ngSubmit)="submitTransfer()">
+                    <div class="form-group row">
+                        <label for="amount" style="color:white;" class="col-sm-3 col-form-label col-form-label-lg">Amount to transfer</label>
+                        <div class="col-sm-5">
+                            <input type="number" formControlName="amount" class="form-control form-control-lg mb-3" id="amount" placeholder="0,000.00">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="reference" style="color:white;" class="col-sm-3 col-form-label col-form-label-lg">memo</label>
+                        <div class="col-sm-5">
+                            <input type="text" formControlName="reference" class="form-control form-control-lg mb-3" id="reference" placeholder="---">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fromcardNumber" style="color:white;" class="col-sm-3 col-form-label col-form-label-lg">Card to transfer from:</label>
+                        <div class="col-sm-5">
+                            <select class="form-select form-select-lg mb-3" formControlName="fromcardNumber" aria-label=".form-select-lg" style="height:35px;" required id="fromcardNumber">
+                                <option selected>Select...</option>
+                                <option *ngFor="let cards of Cards">{{cards.cardNumber}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="tocardNumber" style="color:white;" class="col-sm-3 col-form-label col-form-label-lg">Card number to transfer to:</label>
+                        <div class="col-sm-5">
+                            <input type="number" formControlName="tocardNumber" class="form-control form-control-lg mb-3" id="tocardNumber" placeholder="123456789">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <button type="submit" style="transform: translateX(610%);" class="btn btn-success">Transfer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

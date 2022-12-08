@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+    
+</head>
+<body>
+
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center ">
+        <div class="cardbg"></div>
+        <h1 class="display-4" style="font-size:80px">The Spring Card</h1>
+        <h1  class="display-5">Chose any card we offer with no fees and no hidden expenses <br>you also get a free wallet! </h1>
+    </div>
+
+    <div class="container-lg">
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 box-shadow">
+                <div class=" bg-black card-header">
+                    <h3 class="font-weight-heavy cardtxt" style="border: 0px; color:white; font-size:30">Spring Credit Card</h3>
+                </div>
+                <div class="bg-darker card-body" style="border: 0px">
+                    <div class="sprbg"></div>
+                    <div class="bg-text ">
+                        <h1 class="card-title pricing-card-title">fees: $0 <small class="text-muted">/ mo</small></h1>
+                        <ul class="list-unstyled mt-3 mb-4 cardtxt-sm">
+                            <li>18% Apr</li>
+                            <li>24 hour support</li>
+                            <li>No late fees</li>
+                            <li>flexible payments</li>
+                        </ul>
+                        <button (click)="onCredit()" type="button" class="btn btn-lg btn-block btn-success">Get Yours Now!</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-4 box-shadow">
+                <div class=" bg-black card-header">
+                    <h3 class="my-0 font-weight-heavy cardtxt"  style="border:10px; color:white;">Spring Debit Card</h3>
+                </div>
+                <div class="bg-darker card-body">
+                    <div class="sprbg" style="border: 0px" ></div>
+                    <div class="bg-text">
+                        <h1 class="card-title pricing-card-title ">fees: $0 <small class="text-muted">/ mo</small></h1>
+                        <ul class="list-unstyled mt-3 mb-4 cardtxt-sm">
+                            <li>0 fees</li>
+                            <li>24 hour support</li>
+                            <li>No overdraft fees</li>
+                            <li>no cancellation fees</li>
+                        </ul>
+                        <button (click)="onDebit()" type="button" class="btn btn-lg btn-block btn-success">Get Yours Now!</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-4 box-shadow">
+                <div class=" bg-black card-header">
+                    <h3 class="my-0 font-weight-heavy cardtxt" style="border:10px; color:white;">Savings Account</h3>
+                </div>
+                <div class="bg-lgreen card-body">
+                    <h1 class="card-title pricing-card-title">fees: $0<small class="text-muted">/ mo</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4 cardtxt-sm">
+                        <li>5% interest</li>
+                        <li>24 hour support</li>
+                        <li>Simple withdrawals</li>
+                        <li>Easy savings access</li>
+                    </ul>
+                    <button (click)="createSavingsAccount()" class="btn btn-lg btn-block btn-outline-success">Continue to Savings</button>
+                </div>
+            </div>
+        </div>
+
+       
+    </div>
+
+</body>
+
+</html>
