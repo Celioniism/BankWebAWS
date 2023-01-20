@@ -71,30 +71,7 @@ export class AuthService {
     this.dologin(this.credentials).subscribe((response) => {
       this.islogged = response;
       console.log(this.islogged + ' logged');
-      this.getId(this.credentials).subscribe((response) => {
-        this.userId = response;
-        this.getUDetails(this.credentials).subscribe((response) => {
-          this.userSD = response;
-
-          if (this.islogged == 'true' || this.islogged == true) {
-            console.log('YES LOGGED');
-            localStorage.setItem('isLoggedIn', 'true');
-            localStorage.setItem('userId', this.userId);
-            localStorage.setItem('username', this.userSD.username);
-            localStorage.setItem('accessLevel', this.userSD.accessLevel);
-            localStorage.setItem('lastName', this.userSD.lastName);
-            localStorage.setItem('firstName', this.userSD.firstName);
-            UserLocal.Logged();
-            console.log(UserLocal.getLog());
-            this.$auth.next(this.checkLogin());
-            this._router.navigate(['/mainpage']);
-            return true;
-          } else {
-            alert('Please Enter valid details!!!');
-            return false;
-          }
-        });
-      });
+      this.getLoginFromResponse();
     });
   }
   logout() {
@@ -102,7 +79,35 @@ export class AuthService {
     localStorage.removeItem('isLoggedIn');
     this._router.navigate(['/mainpage']);
   }
+
+  getLoginFromResponse() {
+    this.getId(this.credentials).subscribe((response) => {
+      this.userId = response;
+      this.getUDetails(this.credentials).subscribe((response) => {
+        this.userSD = response;
+
+        if (this.islogged == 'true' || this.islogged == true) {
+          console.log('YES LOGGED');
+          localStorage.setItem('isLoggedIn', 'true');
+          localStorage.setItem('userId', this.userId);
+          localStorage.setItem('username', this.userSD.username);
+          localStorage.setItem('accessLevel', this.userSD.accessLevel);
+          localStorage.setItem('lastName', this.userSD.lastName);
+          localStorage.setItem('firstName', this.userSD.firstName);
+          UserLocal.Logged();
+          console.log(UserLocal.getLog());
+          this.$auth.next(this.checkLogin());
+          this._router.navigate(['/mainpage']);
+          return true;
+        } else {
+          alert('Please Enter valid details!!!');
+          return false;
+        }
+      });
+    });
+  }
 }
+
 export interface UserSD {
   firstName: string;
   lastName: string;

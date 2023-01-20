@@ -12,7 +12,7 @@ import {
   providedIn: 'root',
 })
 export class TransactionsService {
-  private baseUrl = 'http://localhost:8080/api/';
+  private baseUrl = 'http://localhost:8080/api/transactions/';
   constructor(private _http: HttpClient) {}
 
   getAllTransactions(): Observable<any> {

@@ -6,8 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './Navbar/navbar/navbar.component';
 import { HeadComponent } from './Navbar/head/head.component';
 import { UserprofileComponent } from './views/userprofile/userprofile.component';
-import { StaffprofileComponent } from './views/staffprofile/staffprofile.component';
-import { AdminprofileComponent } from './views/adminprofile/adminprofile.component';
+
 import { ProfileComponent } from './views/profile.component';
 import { AccountsComponent } from './pages/accounts/accounts.component';
 import { MainpageComponent } from './pages/mainpage/mainpage.component';
@@ -32,8 +31,7 @@ import { UserLocal } from './Local/user-local/userLocal';
     NavbarComponent,
     HeadComponent,
     UserprofileComponent,
-    StaffprofileComponent,
-    AdminprofileComponent,
+
     LoginComponent,
     ProfileComponent,
     AccountsComponent,
